@@ -15,8 +15,10 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "server" {
-  ami           = "${data.aws_ami.ubuntu.id}"
+  ami = "${data.aws_ami.ubuntu.id}"
   instance_type = "t2.micro"
+
+  ebs_optimized = true
 
   subnet_id = "${var.subnet_id}"
   vpc_security_group_ids = [
